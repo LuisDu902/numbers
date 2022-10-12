@@ -9,9 +9,11 @@ import java.util.List;
 
 public class ListAggregatorTest {
     List<Integer> list;
+    List<Integer> list2;
     @BeforeEach
     public void helper(){
         list = Arrays.asList(1,2,4,2,5);
+        list2 = Arrays.asList(-1,-4,-5);
     }
     @Test
     public void sum() {
@@ -29,6 +31,14 @@ public class ListAggregatorTest {
         int max = aggregator.max(list);
 
         Assertions.assertEquals(5, max);
+    }
+    @Test
+    public void max_bug_7263() {
+
+        ListAggregator aggregator = new ListAggregator();
+        int max = aggregator.max(list2);
+
+        Assertions.assertEquals(-1, max);
     }
 
     @Test
