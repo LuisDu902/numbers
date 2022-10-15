@@ -56,20 +56,20 @@ public class ListAggregatorTest {
     public void distinct() {
         class stub implements GenericListDeduplicator{
             @Override
-            public List<Integer> deduplicate(List<Integer> list) {
+            public List<Integer> deduplicate(List<Integer> list,  GenericListSorter list2) {
                 return Arrays.asList(1,2,4,5);
             }
         }
-        /*class stub_dedu implements GenericListSorter{
+        class stub_dedu implements GenericListSorter{
             @Override
             public List<Integer> sort(List<Integer> list){
-                return Arrays.asList(1,2,2,4);
+                return Arrays.asList(1,2,2,4, 5);
             }
-        }*/
+        }
         ListAggregator aggregator = new ListAggregator();
         GenericListDeduplicator deduplicator = new stub();
-        //GenericListSorter sorter = new stub_dedu();
-        int distinct = aggregator.distinct(list, deduplicator);
+        GenericListSorter sorter = new stub_dedu();
+        int distinct = aggregator.distinct(list, deduplicator, sorter);
 
         Assertions.assertEquals(4, distinct);
     }
@@ -78,15 +78,20 @@ public class ListAggregatorTest {
     public void distinct_bug_8726() {
         class stub implements GenericListDeduplicator{
             @Override
-            public List<Integer> deduplicate(List<Integer> list) {
+            public List<Integer> deduplicate(List<Integer> list, GenericListSorter list2) {
                 return Arrays.asList(1,2,4);
             }
         }
-
+        class stub_dedu implements GenericListSorter{
+            @Override
+            public List<Integer> sort(List<Integer> list){
+                return Arrays.asList(1,2,2,4);
+            }
+        }
         ListAggregator aggregator = new ListAggregator();
         GenericListDeduplicator deduplicator = new stub();
-        //GenericListSorter sorter = new stub_dedu();
-        int distinct = aggregator.distinct(list3,deduplicator);
+        GenericListSorter sorter = new stub_dedu();
+        int distinct = aggregator.distinct(list3,deduplicator,sorter);
 
         Assertions.assertEquals(3, distinct);
     }

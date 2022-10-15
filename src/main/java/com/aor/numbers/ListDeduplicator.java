@@ -16,9 +16,8 @@ public class ListDeduplicator implements GenericListDeduplicator{
      * change.
      */
     @Override
-    public List<Integer> deduplicate(List<Integer> list) {
-        ListSorter listSorter = new ListSorter();
-        List<Integer> sorted = listSorter.sort(list);
+    public List<Integer> deduplicate(List<Integer> list, GenericListSorter list2) {
+        List<Integer> sorted = list2.sort(list);
         List<Integer> unique = new ArrayList<>();
 
         Integer last = null;

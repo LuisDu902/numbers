@@ -19,15 +19,22 @@ public class ListDeduplicatorTest {
     @Test
     public void deduplicate() {
         List<Integer> expected = Arrays.asList(1,2,4,5);
-
+        class stub_dedu implements GenericListSorter{
+            @Override
+            public List<Integer> sort(List<Integer> list){
+                return Arrays.asList(1,2,2,4,5);
+            }
+        }
+        GenericListSorter sorter = new stub_dedu();
         ListDeduplicator deduplicator = new ListDeduplicator();
-        List<Integer> distinct = deduplicator.deduplicate(list);
+        List<Integer> distinct = deduplicator.deduplicate(list,sorter);
+
 
         Assertions.assertEquals(expected, distinct);
     }
-    /*@Test
+    @Test
     public void distinct_bug_8726() {
-        /*class stub_dedus implements GenericListSorter{
+        class stub_dedus implements GenericListSorter{
             @Override
             public List<Integer> sort(List<Integer> list){
                 return Arrays.asList(1,2,2,4);
@@ -35,9 +42,9 @@ public class ListDeduplicatorTest {
         }
         List<Integer> expected = Arrays.asList(1,2,4);
         ListDeduplicator deduplicator = new ListDeduplicator();
-        //GenericListSorter sorter = new stub_dedus();
-        //List<Integer> distinct = deduplicator.deduplicate(list3, sorter);
+        GenericListSorter sorter = new stub_dedus();
+        List<Integer> distinct = deduplicator.deduplicate(list3, sorter);
 
         Assertions.assertEquals(expected, distinct);
-    }*/
+    }
 }
