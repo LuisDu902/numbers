@@ -10,9 +10,11 @@ import java.util.List;
 public class ListSorterTest {
 
     List<Integer> list;
+    List<Integer> list3;
     @BeforeEach
     public void helper(){
         list = Arrays.asList(3, 2, 6, 1, 4, 5, 7);
+        list3 = Arrays.asList(1,2,4,2);
     }
 
     @Test

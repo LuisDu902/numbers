@@ -10,10 +10,12 @@ import java.util.List;
 public class ListAggregatorTest {
     List<Integer> list;
     List<Integer> list2;
+    List<Integer> list3;
     @BeforeEach
     public void helper(){
         list = Arrays.asList(1,2,4,2,5);
         list2 = Arrays.asList(-1,-4,-5);
+        list3 = Arrays.asList(1,2,4,2);
     }
     @Test
     public void sum() {
@@ -52,10 +54,40 @@ public class ListAggregatorTest {
 
     @Test
     public void distinct() {
-
+        class stub implements GenericListDeduplicator{
+            @Override
+            public List<Integer> deduplicate(List<Integer> list) {
+                return Arrays.asList(1,2,4,5);
+            }
+        }
+        /*class stub_dedu implements GenericListSorter{
+            @Override
+            public List<Integer> sort(List<Integer> list){
+                return Arrays.asList(1,2,2,4);
+            }
+        }*/
         ListAggregator aggregator = new ListAggregator();
-        int distinct = aggregator.distinct(list);
+        GenericListDeduplicator deduplicator = new stub();
+        //GenericListSorter sorter = new stub_dedu();
+        int distinct = aggregator.distinct(list, deduplicator);
 
         Assertions.assertEquals(4, distinct);
+    }
+
+    @Test
+    public void distinct_bug_8726() {
+        class stub implements GenericListDeduplicator{
+            @Override
+            public List<Integer> deduplicate(List<Integer> list) {
+                return Arrays.asList(1,2,4);
+            }
+        }
+
+        ListAggregator aggregator = new ListAggregator();
+        GenericListDeduplicator deduplicator = new stub();
+        //GenericListSorter sorter = new stub_dedu();
+        int distinct = aggregator.distinct(list3,deduplicator);
+
+        Assertions.assertEquals(3, distinct);
     }
 }
