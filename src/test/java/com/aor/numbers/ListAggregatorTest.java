@@ -76,4 +76,5 @@ public class ListAggregatorTest {
 
         Assertions.assertEquals(3, distinct);
     }
+
 }
