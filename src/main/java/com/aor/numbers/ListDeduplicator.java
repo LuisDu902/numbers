@@ -8,16 +8,19 @@ import java.util.List;
  * from a list.
  */
 public class ListDeduplicator implements GenericListDeduplicator{
-
+    private  GenericListSorter sorter;
     /**
      * Removes duplicate numbers from a list.
      * @return A list having the same numbers as the original
      * but withou duplicates. The order of the numbers might
      * change.
      */
+    public ListDeduplicator(GenericListSorter sorter){
+        this.sorter = sorter;
+    }
     @Override
-    public List<Integer> deduplicate(List<Integer> list, GenericListSorter list2) {
-        List<Integer> sorted = list2.sort(list);
+    public List<Integer> deduplicate(List<Integer> list) {
+        List<Integer> sorted = sorter.sort(list);
         List<Integer> unique = new ArrayList<>();
 
         Integer last = null;
