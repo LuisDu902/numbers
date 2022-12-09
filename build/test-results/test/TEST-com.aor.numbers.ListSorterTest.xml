@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.aor.numbers.ListSorterTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-10-19T11:27:48" hostname="du-Lenovo-YOGA-730-13IKB" time="0.011">
-  <properties/>
-  <testcase name="another_test()" classname="com.aor.numbers.ListSorterTest" time="0.005"/>
-  <testcase name="sort()" classname="com.aor.numbers.ListSorterTest" time="0.003"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

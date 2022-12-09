@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.aor.numbers.ListFiltererTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-10-19T11:27:48" hostname="du-Lenovo-YOGA-730-13IKB" time="0.004">
+<testsuite name="com.aor.numbers.ListFiltererTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-10-26T11:42:14" hostname="du-Lenovo-YOGA-730-13IKB" time="0.061">
   <properties/>
-  <testcase name="divisible_filter()" classname="com.aor.numbers.ListFiltererTest" time="0.002"/>
-  <testcase name="positive_filter()" classname="com.aor.numbers.ListFiltererTest" time="0.001"/>
+  <testcase name="divisible_filter()" classname="com.aor.numbers.ListFiltererTest" time="0.061"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

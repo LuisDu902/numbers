@@ -10,11 +10,14 @@ public class ListAggregatorTest {
     List<Integer> list;
     List<Integer> list2;
     List<Integer> list3;
+    List<Integer> list4;
+
     @BeforeEach
     public void helper(){
         list = Arrays.asList(1,2,4,2,5);
         list2 = Arrays.asList(-1,-4,-5);
         list3 = Arrays.asList(1,2,4,2);
+        list4 = Arrays.asList(1,2,4,2,5,5,1,6,Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
     @Test
     public void sum() {
@@ -29,9 +32,9 @@ public class ListAggregatorTest {
     public void max() {
 
         ListAggregator aggregator = new ListAggregator();
-        int max = aggregator.max(list);
+        int max = aggregator.max(list4);
 
-        Assertions.assertEquals(5, max);
+        Assertions.assertEquals(Integer.MAX_VALUE, max);
     }
     @Test
     public void max_bug_7263() {
@@ -46,9 +49,9 @@ public class ListAggregatorTest {
     public void min() {
 
         ListAggregator aggregator = new ListAggregator();
-        int min = aggregator.min(list);
+        int min = aggregator.min(list4);
 
-        Assertions.assertEquals(1, min);
+        Assertions.assertEquals(Integer.MIN_VALUE, min);
     }
 
     @Test
